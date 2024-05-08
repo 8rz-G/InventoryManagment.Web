@@ -2,6 +2,7 @@
 using InventoryManagment.Web.Models;
 using InventoryManagment.Web.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagment.Web.Controllers
@@ -23,6 +24,7 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public IActionResult Add()
 		{
+			ViewBag.Department = new SelectList(_context.Departments.ToList(), "Id", "Name");
 			return View();
 		}
 		[HttpPost]
@@ -32,6 +34,7 @@ namespace InventoryManagment.Web.Controllers
 			{
 				Name = viewModel.Name,
 				Email = viewModel.Email,
+				Department = viewModel.Department,
 				DateOfEmployment = viewModel.DateOfEmployment
 			};
 

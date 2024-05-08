@@ -20,6 +20,10 @@ else
 			<input type="text" class="form-control" asp-for="Email" />
 		</div>
 		<div class="mt-3">
+			<label class="form-label">Department</label>
+			@Html.DropDownList("Department", ViewBag.Departments, "--Select User--", new { @class = "form-control" })
+		</div>
+		<div class="mt-3">
 			<label class="form-label">DateOfEmployment</label>
 			<input type="text" class="form-control" asp-for="DateOfEmployment" />
 		</div>

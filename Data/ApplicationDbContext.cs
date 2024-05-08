@@ -12,5 +12,6 @@ namespace InventoryManagment.Web.Data
 
 		public DbSet<User> Users { get; set; }
 		public DbSet<Laptop> Laptops { get; set; }
+		public DbSet<Department> Departments { get; set; }
 	}
 }
