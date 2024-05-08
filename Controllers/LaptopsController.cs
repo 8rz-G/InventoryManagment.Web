@@ -2,6 +2,7 @@
 using InventoryManagment.Web.Models;
 using InventoryManagment.Web.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagment.Web.Controllers
@@ -23,6 +24,8 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public IActionResult Add()
 		{
+			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
+
 			return View();
 		}
 		[HttpPost]
@@ -43,14 +46,19 @@ namespace InventoryManagment.Web.Controllers
 			return RedirectToAction("Index");
 		}
 		[HttpGet]
-		public async Task<IActionResult> Edit()
+		public async Task<IActionResult> Edit(int Id)
 		{
-			return View();
+			var user = await _context.Laptops.FindAsync(Id);
+
+			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
+
+			return View(user);
 		}
 		[HttpPost]
 		public async Task<IActionResult> Edit(Laptop viewModel)
 		{
-			var laptop = await _context.Laptops.FindAsync(viewModel.Id); 
+
+			var laptop = await _context.Laptops.FindAsync(viewModel.Id);
 
 			if (laptop is not null)
 			{
@@ -61,7 +69,7 @@ namespace InventoryManagment.Web.Controllers
 				laptop.InStock = viewModel.InStock;
 				laptop.SerialNumber = viewModel.SerialNumber;
 			}
-			
+
 			await _context.SaveChangesAsync();
 
 			return RedirectToAction("Index");
@@ -71,14 +79,14 @@ namespace InventoryManagment.Web.Controllers
 		{
 			var laptop = await _context.Laptops.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
-			
+
 			if (laptop is not null)
 			{
 				_context.Laptops.Remove(laptop);
 				await _context.SaveChangesAsync();
 			}
-			
-			return View();
+
+			return RedirectToAction("Index");
 		}
 
 	}

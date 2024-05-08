@@ -14,22 +14,22 @@ namespace InventoryManagment.Web.Controllers
 			this._context = context;
 		}
 		[HttpGet]
-		public async Task<IActionResult> Index() 
+		public async Task<IActionResult> Index()
 		{
 			var users = await _context.Users.ToListAsync();
-			
+
 			return View(users);
 		}
 		[HttpGet]
 		public IActionResult Add()
-		{ 
+		{
 			return View();
 		}
 		[HttpPost]
 		public async Task<IActionResult> Add(AddUserViewModel viewModel)
 		{
 			var user = new User
-			{ 
+			{
 				Name = viewModel.Name,
 				Email = viewModel.Email,
 				DateOfEmployment = viewModel.DateOfEmployment
@@ -41,7 +41,7 @@ namespace InventoryManagment.Web.Controllers
 			return RedirectToAction("Index");
 		}
 		[HttpGet]
-		public async Task<IActionResult> Edit(Guid Id) 
+		public async Task<IActionResult> Edit(Guid Id)
 		{
 			var user = await _context.Users.FindAsync(Id);
 
@@ -51,7 +51,7 @@ namespace InventoryManagment.Web.Controllers
 		public async Task<IActionResult> Edit(User viewModel)
 		{
 			var user = await _context.Users.FindAsync();
-			if (user is not null) 
+			if (user is not null)
 			{
 				user.Name = viewModel.Name;
 				user.Email = viewModel.Email;
@@ -62,17 +62,17 @@ namespace InventoryManagment.Web.Controllers
 			return RedirectToAction("Index");
 		}
 		[HttpPost]
-		public async Task<IActionResult> Delete(User viewModel) 
+		public async Task<IActionResult> Delete(User viewModel)
 		{
 			var user = await _context.Users.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 
-			if (user is not null) 
-			{ 
+			if (user is not null)
+			{
 				_context.Users.Remove(user);
 				await _context.SaveChangesAsync();
 			}
-			
+
 			return RedirectToAction("Index");
 		}
 

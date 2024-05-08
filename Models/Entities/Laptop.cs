@@ -10,7 +10,7 @@ namespace InventoryManagment.Web.Models.Entities
 		[Key]
 		public int Id { get; set; }
 		[ForeignKey("Id")]
-		public string AssignedTo { get; set; }
+		public Guid AssignedTo { get; set; }
 		public string Producer { get; set; }
 		public string Model { get; set; }
 		public bool InStock { get; set; }

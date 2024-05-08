@@ -2,7 +2,7 @@
 {
 	public class AddLaptopViewModel
 	{
-		public string AssignedTo { get; set; }
+		public Guid AssignedTo { get; set; }
 		public string Producer { get; set; }
 		public string Model { get; set; }
 		public bool InStock { get; set; }

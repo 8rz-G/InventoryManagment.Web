@@ -3,27 +3,27 @@
 <h3>Users</h3>
 
 <table class="table">
-    <thead>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Quantity (on stock)</th>
-    <th>Price</th>
-    <th></th>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-            <tr>
-                <td>@user.Id</td>
-                <td>@user.Name</td>
-                <td>@user.Email</td>
-                <td>@user.DateOfEmployment</td>
-                <td>
-                    <a class="btn btn-dark" asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
-                </td>
-            </tr>
-        }
-    </tbody>
+	<thead>
+	<th>Id</th>
+	<th>Name</th>
+	<th>Category</th>
+	<th>Quantity (on stock)</th>
+	<th>Price</th>
+	<th></th>
+	</thead>
+	<tbody>
+		@foreach (var user in Model)
+		{
+			<tr>
+				<td>@user.Id</td>
+				<td>@user.Name</td>
+				<td>@user.Email</td>
+				<td>@user.DateOfEmployment</td>
+				<td>
+					<a class="btn btn-dark" asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>
-<a class="btn btn-dark" asp-controller="users" asp-action="Add">Add new user</a>
+<a class="btn btn-dark" asp-controller="Users" asp-action="Add">Add new user</a>

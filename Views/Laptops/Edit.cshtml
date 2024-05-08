@@ -1,1 +1,40 @@
-﻿
+﻿@model InventoryManagment.Web.Models.Entities.Laptop
+
+@if (Model is null)
+{
+	<p>Laptop not found!</p>
+}
+else
+{
+	<form method="post">
+		<div class="mt-3">
+			<label class="form-label">Id</label>
+			<input type="int" class="form-control" asp-for="Id" readonly />
+		</div>
+		<div class="mt-3">
+			<label class="form-label">AssignedTo</label>
+			@Html.DropDownList("AssignedTo", ViewBag.Users, "--Select User--", new { @class = "form-control" })
+		</div>
+		<div class="mt-3">
+			<label class="form-label">Producer</label>
+			<input type="text" class="form-control" asp-for="Producer" />
+		</div>
+		<div class="mt-3">
+			<label class="form-label">Model</label>
+			<input type="text" class="form-control" asp-for="Model" />
+		</div>
+		<div class="mt-3">
+			<label class="form-label">On stock</label>
+			<input type="text" class="form-control" asp-for="InStock" />
+		</div>
+		<div class="mt-3">
+			<label class="form-label">SerialNumber</label>
+			<input type="text" class="form-control" asp-for="SerialNumber" />
+		</div>
+		<div class="mt-3">
+			<button type="submit" class="btn btn-primary">Save</button>
+
+			<button type="submit" class="btn btn-danger ms3" asp-action="Delete" asp-controller="laptops">Delete</button>
+		</div>
+	</form>
+}
