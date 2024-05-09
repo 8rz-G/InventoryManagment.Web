@@ -17,7 +17,7 @@ else
 		</div>
 		<div class="mt-3">
 			<label class="form-label">Producer</label>
-			<input type="text" class="form-control" asp-for="Producer" />
+			@Html.DropDownList("Producer", ViewBag.Producers, "--Select Producer--", new { @class = "form-control" })
 		</div>
 		<div class="mt-3">
 			<label class="form-label">Model</label>

@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InventoryManagment.Web.Models.Entities
 {
-	public class Laptop
+	public class Display
 	{
+
 		[Key]
 		public int Id { get; set; }
 		[ForeignKey("Id")]

@@ -16,9 +16,11 @@ namespace InventoryManagment.Web.Controllers
 		{
 			this._context = context;
 		}
+
 		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
+			// returning list of laptops from database to Index view
 			var laptops = await _context.Laptops.ToListAsync();
 
 			return View(laptops);
@@ -26,13 +28,16 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public IActionResult Add()
 		{
+			// creating ViewBag for user selection dropdown
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
+			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 
 			return View();
 		}
 		[HttpPost]
 		public async Task<IActionResult> Add(AddLaptopViewModel viewModel)
 		{
+			// adding user provided data to object for database insertion
 			var laptop = new Laptop
 			{
 				AssignedTo = viewModel.AssignedTo,
@@ -50,18 +55,20 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var user = await _context.Laptops.FindAsync(Id);
+			var laptop = await _context.Laptops.FindAsync(Id);
 
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
+			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 
-			return View(user);
+			return View(laptop);
 		}
 		[HttpPost]
 		public async Task<IActionResult> Edit(Laptop viewModel)
 		{
-
+			// searching for elements of database to update values
 			var laptop = await _context.Laptops.FindAsync(viewModel.Id);
 
+			// updating database values
 			if (laptop is not null)
 			{
 				laptop.Id = viewModel.Id;
@@ -79,9 +86,10 @@ namespace InventoryManagment.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Delete(Laptop viewModel)
 		{
+			// finding laptop to remove
 			var laptop = await _context.Laptops.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
-
+			// removing laptop from database
 			if (laptop is not null)
 			{
 				_context.Laptops.Remove(laptop);
@@ -110,7 +118,7 @@ namespace InventoryManagment.Web.Controllers
 				sheet.Cells[1, 4].Value = "Model";
 				sheet.Cells[1, 5].Value = "InStock";
 				sheet.Cells[1, 6].Value = "SerialNumber";
-			
+
 				// data insert to cells
 				foreach (var item in laptops)
 				{
@@ -126,7 +134,7 @@ namespace InventoryManagment.Web.Controllers
 			}
 			// file download
 			var file = new FileContentResult(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-			file.FileDownloadName = "Laptops"+DateOnly.FromDateTime(DateTime.Now).ToString()+".xlsx";
+			file.FileDownloadName = "Laptops" + DateOnly.FromDateTime(DateTime.Now).ToString() + ".xlsx";
 			return file;
 		}
 

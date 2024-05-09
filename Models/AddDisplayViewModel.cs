@@ -1,6 +1,6 @@
 ﻿namespace InventoryManagment.Web.Models
 {
-	public class AddLaptopViewModel
+	public class AddDisplayViewModel
 	{
 		public Guid AssignedTo { get; set; }
 		public int Producer { get; set; }

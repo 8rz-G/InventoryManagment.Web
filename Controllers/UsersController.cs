@@ -25,6 +25,7 @@ namespace InventoryManagment.Web.Controllers
 		public IActionResult Add()
 		{
 			ViewBag.Department = new SelectList(_context.Departments.ToList(), "Id", "Name");
+
 			return View();
 		}
 		[HttpPost]
@@ -48,16 +49,20 @@ namespace InventoryManagment.Web.Controllers
 		{
 			var user = await _context.Users.FindAsync(Id);
 
+			ViewBag.Department = new SelectList(_context.Departments.ToList(), "Id", "Name");
+
 			return View(user);
 		}
 		[HttpPost]
 		public async Task<IActionResult> Edit(User viewModel)
 		{
-			var user = await _context.Users.FindAsync();
+			var user = await _context.Users.FindAsync(viewModel.Id);
 			if (user is not null)
 			{
 				user.Name = viewModel.Name;
 				user.Email = viewModel.Email;
+				user.Department = viewModel.Department;
+				user.DateOfEmployment = viewModel.DateOfEmployment;
 			}
 
 			await _context.SaveChangesAsync();
