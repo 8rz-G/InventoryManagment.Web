@@ -1,9 +1,11 @@
-﻿using InventoryManagment.Web.Data;
+﻿using Microsoft.AspNetCore.Http;
+using InventoryManagment.Web.Data;
 using InventoryManagment.Web.Models;
 using InventoryManagment.Web.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 
 namespace InventoryManagment.Web.Controllers
 {
@@ -17,9 +19,9 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
-			var users = await _context.Laptops.ToListAsync();
+			var laptops = await _context.Laptops.ToListAsync();
 
-			return View(users);
+			return View(laptops);
 		}
 		[HttpGet]
 		public IActionResult Add()
@@ -87,6 +89,45 @@ namespace InventoryManagment.Web.Controllers
 			}
 
 			return RedirectToAction("Index");
+		}
+
+		public async Task<IActionResult> Export()
+		{
+			ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+			var laptops = await _context.Laptops.ToListAsync();
+
+			byte[] bytes;
+			// creating headers for collumns
+			using (var laptop = new ExcelPackage())
+			{
+				var sheet = laptop.Workbook.Worksheets.Add("Laptops");
+				int i = 2;
+
+				sheet.Cells[1, 1].Value = "Id";
+				sheet.Cells[1, 2].Value = "AssignedTo";
+				sheet.Cells[1, 3].Value = "Producer";
+				sheet.Cells[1, 4].Value = "Model";
+				sheet.Cells[1, 5].Value = "InStock";
+				sheet.Cells[1, 6].Value = "SerialNumber";
+			
+				// data insert to cells
+				foreach (var item in laptops)
+				{
+					sheet.Cells[i, 1].Value = item.Id;
+					sheet.Cells[i, 2].Value = item.AssignedTo;
+					sheet.Cells[i, 3].Value = item.Producer;
+					sheet.Cells[i, 4].Value = item.Model;
+					sheet.Cells[i, 5].Value = item.InStock;
+					sheet.Cells[i, 6].Value = item.SerialNumber;
+					i++;
+				}
+				bytes = await laptop.GetAsByteArrayAsync();
+			}
+			// file download
+			var file = new FileContentResult(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+			file.FileDownloadName = "Laptops"+DateOnly.FromDateTime(DateTime.Now).ToString()+".xlsx";
+			return file;
 		}
 
 	}
