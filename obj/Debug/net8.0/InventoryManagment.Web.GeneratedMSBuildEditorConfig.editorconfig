@@ -30,6 +30,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Displays/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheXNcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Displays/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Displays/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,18 +60,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Laptops/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFwdG9wc1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Monitors/Add.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uaXRvcnNcQWRkLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Monitors/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uaXRvcnNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Monitors/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9uaXRvcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Brzezin/source/repos/InventoryManagment.Web/InventoryManagment.Web/Views/Shared/Error.cshtml]

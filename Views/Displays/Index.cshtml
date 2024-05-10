@@ -1,0 +1,32 @@
+﻿@model List<InventoryManagment.Web.Models.Entities.Display>
+
+<h3>Monitors</h3>
+
+<table class="table">
+	<thead>
+	<th>Id</th>
+	<th>AssignedTo</th>
+	<th>Producer</th>
+	<th>Model</th>
+	<th>InStock</th>
+	<th>SerialNumber</th>
+	</thead>
+	<tbody>
+		@foreach (var monitor in Model)
+		{
+			<tr>
+				<td>@monitor.Id</td>
+				<td>@monitor.AssignedTo</td>
+				<td>@monitor.Producer</td>
+				<td>@monitor.Model</td>
+				<td>@monitor.InStock</td>
+				<td>@monitor.SerialNumber</td>
+				<td>
+					<a class="btn btn-dark" asp-controller="Displays" asp-action="Edit" asp-route-id="@monitor.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-dark" asp-controller="Displays" asp-action="Add">Add new monitor</a>
+<a class="btn btn-dark" asp-controller="Displays" asp-action="Export">Export</a>

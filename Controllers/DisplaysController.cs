@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagment.Web.Controllers
 {
-	public class MonitorsController : Controller
+	public class DisplaysController : Controller
 	{
 		private ApplicationDbContext _context;
-		public MonitorsController(ApplicationDbContext context)
+		public DisplaysController(ApplicationDbContext context)
 		{
 			this._context = context;
 		}
@@ -18,10 +18,10 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
-			// returning list of laptops from database to Index view
-			var laptops = await _context.Monitors.ToListAsync();
+			// returning list of monitors from database to Index view
+			var monitors = await _context.Monitors.ToListAsync();
 
-			return View(laptops);
+			return View(monitors);
 		}
 		[HttpGet]
 		public IActionResult Add()
@@ -63,7 +63,7 @@ namespace InventoryManagment.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Edit(Laptop viewModel)
 		{
-			// searching for laptop in database to update values
+			// searching for monitors in database to update values
 			var monitor = await _context.Laptops.FindAsync(viewModel.Id);
 
 			// updating database values

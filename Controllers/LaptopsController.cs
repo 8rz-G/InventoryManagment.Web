@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using InventoryManagment.Web.Data;
+﻿using InventoryManagment.Web.Data;
 using InventoryManagment.Web.Models;
 using InventoryManagment.Web.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -106,12 +105,12 @@ namespace InventoryManagment.Web.Controllers
 			var laptops = await _context.Laptops.ToListAsync();
 
 			byte[] bytes;
-			// creating headers for collumns
 			using (var laptop = new ExcelPackage())
 			{
 				var sheet = laptop.Workbook.Worksheets.Add("Laptops");
 				int i = 2;
 
+				// creating headers for collumns
 				sheet.Cells[1, 1].Value = "Id";
 				sheet.Cells[1, 2].Value = "AssignedTo";
 				sheet.Cells[1, 3].Value = "Producer";
