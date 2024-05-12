@@ -12,8 +12,10 @@ namespace InventoryManagment.Web.Data
 
 		public DbSet<User> Users { get; set; }
 		public DbSet<Laptop> Laptops { get; set; }
-		public DbSet<Display> Monitors { get; set; }
+		public DbSet<Display> Displays { get; set; }
 		public DbSet<Department> Departments { get; set; }
 		public DbSet<Producer> Producers { get; set; }
+		public DbSet<LaptopModel> LaptopModels { get; set; }
+		public DbSet<DisplayModel> DisplayModels { get; set; }
 	}
 }

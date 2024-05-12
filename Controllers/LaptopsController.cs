@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
+using System.Linq;
 
 namespace InventoryManagment.Web.Controllers
 {
@@ -30,6 +31,7 @@ namespace InventoryManagment.Web.Controllers
 			// creating ViewBag for user selection dropdown
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
+			ViewBag.LaptopModels = new SelectList(_context.LaptopModels.ToList(), "Id", "Name");
 
 			return View();
 		}
@@ -37,13 +39,15 @@ namespace InventoryManagment.Web.Controllers
 		public async Task<IActionResult> Add(AddLaptopViewModel viewModel)
 		{
 			// adding user provided data to object for database insertion
+
 			var laptop = new Laptop
 			{
 				AssignedTo = viewModel.AssignedTo,
-				Producer = viewModel.Producer,
 				Model = viewModel.Model,
+				Producer = viewModel.Producer,
 				InStock = viewModel.InStock,
-				SerialNumber = viewModel.SerialNumber
+				SerialNumber = viewModel.SerialNumber,
+				DateOfPurchase = viewModel.DateOfPurchase
 			};
 
 			await _context.AddAsync(laptop);
@@ -57,7 +61,8 @@ namespace InventoryManagment.Web.Controllers
 			var laptop = await _context.Laptops.FindAsync(Id);
 
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
-			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
+			ViewBag.Producers = new SelectList(_context.Producers, "Id", "Name");
+			ViewBag.LaptopModels = new SelectList(_context.LaptopModels.ToList(), "Id", "Name");
 
 			return View(laptop);
 		}
@@ -76,6 +81,7 @@ namespace InventoryManagment.Web.Controllers
 				laptop.Model = viewModel.Model;
 				laptop.InStock = viewModel.InStock;
 				laptop.SerialNumber = viewModel.SerialNumber;
+				laptop.DateOfPurchase = viewModel.DateOfPurchase;
 			}
 
 			await _context.SaveChangesAsync();
@@ -117,6 +123,7 @@ namespace InventoryManagment.Web.Controllers
 				sheet.Cells[1, 4].Value = "Model";
 				sheet.Cells[1, 5].Value = "InStock";
 				sheet.Cells[1, 6].Value = "SerialNumber";
+				sheet.Cells[1, 7].Value = "DateOfPurchase";
 
 				// data insert to cells
 				foreach (var item in laptops)

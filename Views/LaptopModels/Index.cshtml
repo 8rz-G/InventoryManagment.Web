@@ -1,0 +1,26 @@
+﻿@model List<InventoryManagment.Web.Models.Entities.LaptopModel>
+
+<h3>Laptop models</h3>
+
+<table class="table">
+	<thead>
+	<th>Id</th>
+	<th>Name</th>
+	<th>Producer</th>
+	<th></th>
+	</thead>
+	<tbody>
+		@foreach (var laptopM in Model)
+		{
+			<tr>
+				<td>@laptopM.Id</td>
+				<td>@laptopM.Name</td>
+				<td>@laptopM.Producer</td>
+				<td>
+					<a class="btn btn-dark" asp-controller="LaptopModels" asp-action="Edit" asp-route-id="@laptopM.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-dark" asp-controller="LaptopModels" asp-action="Add">Add new model</a>

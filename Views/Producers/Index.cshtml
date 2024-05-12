@@ -1,0 +1,27 @@
+﻿@model List<InventoryManagment.Web.Models.Entities.Producer>
+
+<h3>Laptops</h3>
+
+<table class="table">
+	<thead>
+	<th>Id</th>
+	<th>Name</th>
+	<th></th>
+	</thead>
+	<tbody>
+		@foreach (var producer in Model)
+		{
+			<tr>
+				<td>@producer.Id</td>
+				<td>@producer.Name</td>
+				<td>
+					<a class="btn btn-dark" asp-controller="Producers" asp-action="Edit" asp-route-id="@producer.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div>
+	<a class="btn btn-dark" asp-controller="Producers" asp-action="Add">Add new producer</a>
+	<a class="btn btn-dark" asp-controller="LaptopModels" asp-action="Index">Models</a>
+</div>

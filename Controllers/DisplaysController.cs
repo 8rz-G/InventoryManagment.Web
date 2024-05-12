@@ -18,10 +18,10 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
-			// returning list of monitors from database to Index view
-			var monitors = await _context.Monitors.ToListAsync();
+			// returning list of Displays from database to Index view
+			var Displays = await _context.Displays.ToListAsync();
 
-			return View(monitors);
+			return View(Displays);
 		}
 		[HttpGet]
 		public IActionResult Add()
@@ -53,7 +53,7 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var monitor = await _context.Monitors.FindAsync(Id);
+			var monitor = await _context.Displays.FindAsync(Id);
 
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
@@ -61,10 +61,10 @@ namespace InventoryManagment.Web.Controllers
 			return View(monitor);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Edit(Laptop viewModel)
+		public async Task<IActionResult> Edit(Display viewModel)
 		{
-			// searching for monitors in database to update values
-			var monitor = await _context.Laptops.FindAsync(viewModel.Id);
+			// searching for Displays in database to update values
+			var monitor = await _context.Displays.FindAsync(viewModel.Id);
 
 			// updating database values
 			if (monitor is not null)
@@ -85,13 +85,13 @@ namespace InventoryManagment.Web.Controllers
 		public async Task<IActionResult> Delete(Display viewModel)
 		{
 			// finding monitor to remove
-			var monitor = await _context.Monitors.AsNoTracking()
+			var monitor = await _context.Displays.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 
 			// removing monitor from database
 			if (monitor is not null)
 			{
-				_context.Monitors.Remove(monitor);
+				_context.Displays.Remove(monitor);
 				await _context.SaveChangesAsync();
 			}
 

@@ -12,7 +12,7 @@ namespace InventoryManagment.Web.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Monitors",
+                name: "Displays",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -25,7 +25,7 @@ namespace InventoryManagment.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Monitors", x => x.Id);
+                    table.PrimaryKey("PK_Displays", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,7 +46,7 @@ namespace InventoryManagment.Web.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Monitors");
+                name: "Displays");
 
             migrationBuilder.DropTable(
                 name: "Producers");

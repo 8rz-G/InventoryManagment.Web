@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagment.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240509231552_another-migration")]
-    partial class anothermigration
+    [Migration("20240512103100_Migracja")]
+    partial class Migracja
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,56 @@ namespace InventoryManagment.Web.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("InventoryManagment.Web.Models.Entities.Display", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("AssignedTo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("InStock")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Producer")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Displays");
+                });
+
+            modelBuilder.Entity("InventoryManagment.Web.Models.Entities.DisplayModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Producer")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DisplayModels");
+                });
+
             modelBuilder.Entity("InventoryManagment.Web.Models.Entities.Laptop", b =>
                 {
                     b.Property<int>("Id")
@@ -60,9 +110,8 @@ namespace InventoryManagment.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Producer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Producer")
+                        .HasColumnType("int");
 
                     b.Property<string>("SerialNumber")
                         .IsRequired()
@@ -73,7 +122,7 @@ namespace InventoryManagment.Web.Migrations
                     b.ToTable("Laptops");
                 });
 
-            modelBuilder.Entity("InventoryManagment.Web.Models.Entities.Monitor", b =>
+            modelBuilder.Entity("InventoryManagment.Web.Models.Entities.LaptopModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,27 +130,16 @@ namespace InventoryManagment.Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<Guid>("AssignedTo")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("InStock")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Model")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Producer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Producer")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Displays");
+                    b.ToTable("LaptopModels");
                 });
 
             modelBuilder.Entity("InventoryManagment.Web.Models.Entities.Producer", b =>
