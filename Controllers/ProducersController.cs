@@ -25,7 +25,7 @@ namespace InventoryManagment.Web.Controllers
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Add(AddLaptopModelViewModel viewModel)
+		public async Task<IActionResult> Add(AddProducerViewModel viewModel)
 		{
 			var producer = new Producer
 			{
@@ -61,6 +61,19 @@ namespace InventoryManagment.Web.Controllers
 			}
 
 			await _context.SaveChangesAsync();
+
+			return RedirectToAction("Index");
+		}
+		[HttpPost]
+		public async Task<IActionResult> Delete(Producer viewModel)
+		{
+			var producer = await _context.Producers.AsNoTracking()
+				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
+			if (producer is not null) 
+			{ 
+				_context.Producers.Remove(producer);
+				await _context.SaveChangesAsync();
+			}
 
 			return RedirectToAction("Index");
 		}

@@ -122,7 +122,7 @@ namespace InventoryManagment.Web.Migrations
                     b.ToTable("Laptops");
                 });
 
-            modelBuilder.Entity("InventoryManagment.Web.Models.Entities.LaptopModel", b =>
+            modelBuilder.Entity("InventoryManagment.Web.Models.Entities.hardwareModelodel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -139,7 +139,7 @@ namespace InventoryManagment.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LaptopModels");
+                    b.ToTable("hardwareModelodels");
                 });
 
             modelBuilder.Entity("InventoryManagment.Web.Models.Entities.Producer", b =>

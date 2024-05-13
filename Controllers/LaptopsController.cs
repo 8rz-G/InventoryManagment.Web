@@ -31,7 +31,8 @@ namespace InventoryManagment.Web.Controllers
 			// creating ViewBag for user selection dropdown
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
-			ViewBag.LaptopModels = new SelectList(_context.LaptopModels.ToList(), "Id", "Name");
+			ViewBag.hardwareModels = new SelectList(_context.HardwareModels
+				.Where(x => x.Category == "Laptop").Select(x => new { x.Id, x.Name }).ToList(), "Id", "Name");
 
 			return View();
 		}
@@ -43,7 +44,7 @@ namespace InventoryManagment.Web.Controllers
 			var laptop = new Laptop
 			{
 				AssignedTo = viewModel.AssignedTo,
-				Model = viewModel.Model,
+				HardwareModel = viewModel.HardwareModel,
 				Producer = viewModel.Producer,
 				InStock = viewModel.InStock,
 				SerialNumber = viewModel.SerialNumber,
@@ -62,7 +63,8 @@ namespace InventoryManagment.Web.Controllers
 
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
 			ViewBag.Producers = new SelectList(_context.Producers, "Id", "Name");
-			ViewBag.LaptopModels = new SelectList(_context.LaptopModels.ToList(), "Id", "Name");
+			ViewBag.hardwareModels = new SelectList(_context.HardwareModels
+				.Where(x => x.Category == "Laptop").Select(x => new { x.Id, x.Name }).ToList(), "Id", "Name");
 
 			return View(laptop);
 		}
@@ -78,7 +80,7 @@ namespace InventoryManagment.Web.Controllers
 				laptop.Id = viewModel.Id;
 				laptop.AssignedTo = viewModel.AssignedTo;
 				laptop.Producer = viewModel.Producer;
-				laptop.Model = viewModel.Model;
+				laptop.HardwareModel = viewModel.HardwareModel;
 				laptop.InStock = viewModel.InStock;
 				laptop.SerialNumber = viewModel.SerialNumber;
 				laptop.DateOfPurchase = viewModel.DateOfPurchase;
@@ -131,7 +133,7 @@ namespace InventoryManagment.Web.Controllers
 					sheet.Cells[i, 1].Value = item.Id;
 					sheet.Cells[i, 2].Value = item.AssignedTo;
 					sheet.Cells[i, 3].Value = item.Producer;
-					sheet.Cells[i, 4].Value = item.Model;
+					sheet.Cells[i, 4].Value = item.HardwareModel;
 					sheet.Cells[i, 5].Value = item.InStock;
 					sheet.Cells[i, 6].Value = item.SerialNumber;
 					i++;

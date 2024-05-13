@@ -41,7 +41,7 @@ namespace InventoryManagment.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LaptopModels",
+                name: "hardwareModelodels",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -51,7 +51,7 @@ namespace InventoryManagment.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LaptopModels", x => x.Id);
+                    table.PrimaryKey("PK_hardwareModelodels", x => x.Id);
                 });
         }
 
@@ -62,7 +62,7 @@ namespace InventoryManagment.Web.Migrations
                 name: "DisplayModels");
 
             migrationBuilder.DropTable(
-                name: "LaptopModels");
+                name: "hardwareModelodels");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Producer",

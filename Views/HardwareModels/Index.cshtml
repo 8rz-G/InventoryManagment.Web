@@ -1,0 +1,27 @@
+﻿@model List<InventoryManagment.Web.Models.Entities.HardwareModel>
+
+<h3>Hardware models</h3>
+
+<table class="table">
+	<thead>
+	<th>Id</th>
+	<th>Name</th>
+	<th>Producer</th>
+	<th></th>
+	</thead>
+	<tbody>
+		@foreach (var hardwareModel in Model)
+		{
+			<tr>
+				<td>@hardwareModel.Id</td>
+				<td>@hardwareModel.Name</td>
+				<td>@hardwareModel.Producer</td>
+				<td>@hardwareModel.Category</td>
+				<td>
+					<a class="btn btn-dark" asp-controller="HardwareModels" asp-action="Edit" asp-route-id="@hardwareModel.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-dark" asp-controller="HardwareModels" asp-action="Add">Add new model</a>

@@ -7,17 +7,17 @@ using InventoryManagment.Web.Data;
 
 namespace InventoryManagment.Web.Controllers
 {
-	public class LaptopModelsController : Controller
+	public class HardwareModelsController : Controller
 	{
 		private ApplicationDbContext _context;
-		public LaptopModelsController(ApplicationDbContext context)
+		public HardwareModelsController(ApplicationDbContext context)
 		{
 			this._context = context;
 		}
 		public async Task<IActionResult> Index()
 		{
-			var laptopM = await _context.LaptopModels.ToListAsync();
-			return View(laptopM);
+			var hardwareModels = await _context.HardwareModels.ToListAsync();
+			return View(hardwareModels);
 		}
 		[HttpGet]
 		public IActionResult Add()
@@ -27,15 +27,16 @@ namespace InventoryManagment.Web.Controllers
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Add(AddLaptopModelViewModel viewModel)
+		public async Task<IActionResult> Add(AddHardwareModelViewModel viewModel)
 		{
-			var laptopModel = new LaptopModel
+			var hardwareModelodel = new HardwareModel
 			{
 				Name = viewModel.Name,
-				Producer = viewModel.Producer
+				Producer = viewModel.Producer,
+				Category = viewModel.Category
 			};
 
-			await _context.AddAsync(laptopModel);
+			await _context.AddAsync(hardwareModelodel);
 			await _context.SaveChangesAsync();
 
 			return RedirectToAction("Index");
@@ -43,24 +44,25 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var laptopM = await _context.Laptops.FindAsync(Id);
+			var hardwareModel = await _context.Laptops.FindAsync(Id);
 
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 
-			return View(laptopM);
+			return View(hardwareModel);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Edit(LaptopModel viewModel)
+		public async Task<IActionResult> Edit(HardwareModel viewModel)
 		{
 			// searching for elements of database to update values
-			var laptopM = await _context.LaptopModels.FindAsync(viewModel.Id);
+			var hardwareModel = await _context.HardwareModels.FindAsync(viewModel.Id);
 
 			// updating database values
-			if (laptopM is not null)
+			if (hardwareModel is not null)
 			{
-				laptopM.Id = viewModel.Id;
-				laptopM.Name = viewModel.Name;
-				laptopM.Producer = viewModel.Producer;
+				hardwareModel.Id = viewModel.Id;
+				hardwareModel.Name = viewModel.Name;
+				hardwareModel.Producer = viewModel.Producer;
+				hardwareModel.Category = viewModel.Category;
 			}
 
 			await _context.SaveChangesAsync();
@@ -68,15 +70,15 @@ namespace InventoryManagment.Web.Controllers
 			return RedirectToAction("Index");
 		}
 		[HttpPost]
-		public async Task<IActionResult> Delete(Laptop viewModel)
+		public async Task<IActionResult> Delete(HardwareModel viewModel)
 		{
 			// finding laptop to remove
-			var laptopM = await _context.LaptopModels.AsNoTracking()
+			var hardwareModel = await _context.HardwareModels.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 			// removing laptop from database
-			if (laptopM is not null)
+			if (hardwareModel is not null)
 			{
-				_context.LaptopModels.Remove(laptopM);
+				_context.HardwareModels.Remove(hardwareModel);
 				await _context.SaveChangesAsync();
 			}
 

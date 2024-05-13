@@ -11,7 +11,8 @@ namespace InventoryManagment.Web.Models.Entities
 		public Guid AssignedTo { get; set; }
 		[ForeignKey("Id")]
 		public int Producer { get; set; }
-		public int Model { get; set; }
+		[ForeignKey("Id")]
+		public int HardwareModel { get; set; }
 		public bool InStock { get; set; }
 		public string SerialNumber { get; set; }
 		public DateOnly DateOfPurchase { get; set; }
