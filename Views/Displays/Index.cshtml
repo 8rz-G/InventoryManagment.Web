@@ -26,6 +26,7 @@
 				<td>@monitor.DateOfPurchase</td>
 				<td>
 					<a class="btn btn-dark" asp-controller="Displays" asp-action="Edit" asp-route-id="@monitor.Id">Edit</a>
+					<a class="btn btn-dark" asp-controller="InventoryChanges" asp-action="Index" asp-route-id="@monitor.Id">CheckHistory</a>
 				</td>
 			</tr>
 		}

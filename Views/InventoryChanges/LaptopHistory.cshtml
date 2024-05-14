@@ -26,16 +26,8 @@
 				<td>@laptop.DateOfPurchase</td>
 				<td>
 					<a class="btn btn-dark" asp-controller="Laptops" asp-action="Edit" asp-route-id="@laptop.Id">Edit</a>
-					<a class="btn btn-dark" asp-controller="InventoryChanges" asp-action="Index" asp-route-id="@laptop.Id">Check History</a>
 				</td>
 			</tr>
 		}
 	</tbody>
 </table>
-<div>
-<a class="btn btn-dark" asp-controller="Laptops" asp-action="Add">Add new laptop</a>
-<a class="btn btn-dark" asp-controller="Producers" asp-action="Index">Producers</a>
-<a class="btn btn-dark" asp-controller="HardwareModels" asp-action="Index">Models</a>
-</div>
-<br />
-<a class="btn btn-dark" asp-controller="Laptops" asp-action="Export">Export</a>

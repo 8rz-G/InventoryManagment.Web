@@ -16,5 +16,6 @@ namespace InventoryManagment.Web.Data
 		public DbSet<Department> Departments { get; set; }
 		public DbSet<Producer> Producers { get; set; }
 		public DbSet<HardwareModel> HardwareModels { get; set; }
+		public DbSet<InventoryChange> InventoryChanges { get; set; }
 	}
 }

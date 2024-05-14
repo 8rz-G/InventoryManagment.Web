@@ -1,0 +1,33 @@
+﻿@model List<InventoryManagment.Web.Models.Entities.InventoryChange>
+
+<h3>Laptop Changes</h3>
+
+<table class="table">
+	<thead>
+		<th>Id</th>
+		<th>InStock</th>
+		<th>Serial Number</th>
+		<th>Model</th>
+		<th>Assigned To</th>
+		<th>Producer</th>
+		<th>Type Of Hardware</th>
+		<th>Date of Change</th>
+	</thead>
+	<tbody>
+		@foreach (var inventoryChange in Model)
+		{
+			<tr>
+				<td>@inventoryChange.Id</td>
+				<td>@inventoryChange.InStock</td>
+				<td>@inventoryChange.SerialNumber</td>
+				<td>@inventoryChange.HardwareModelName</td>
+				<td>@inventoryChange.AssignedTo</td>
+				<td>@inventoryChange.Producer</td>
+				<td>@inventoryChange.TypeOfHardware</td>
+				<td>@inventoryChange.DateOfChange</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a class="btn btn-dark" asp-controller="Laptops" asp-action="Index">Laptops</a>
+<a class="btn btn-dark" asp-controller="Displays" asp-action="Index">Displays</a>

@@ -16,7 +16,6 @@ namespace InventoryManagment.Web.Controllers
 		{
 			this._context = context;
 		}
-
 		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
@@ -32,7 +31,9 @@ namespace InventoryManagment.Web.Controllers
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 			ViewBag.hardwareModels = new SelectList(_context.HardwareModels
-				.Where(x => x.Category == "Laptop").Select(x => new { x.Id, x.Name }).ToList(), "Id", "Name");
+				.Where(x => x.Category == "Laptop")
+				.Select(x => new { x.Id, x.Name })
+				.ToList(), "Id", "Name");
 
 			return View();
 		}
@@ -54,7 +55,7 @@ namespace InventoryManagment.Web.Controllers
 			await _context.AddAsync(laptop);
 			await _context.SaveChangesAsync();
 
-			return RedirectToAction("Index");
+			return RedirectToAction("LaptopChange", "InventoryChanges", laptop.Id);
 		}
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
@@ -88,7 +89,7 @@ namespace InventoryManagment.Web.Controllers
 
 			await _context.SaveChangesAsync();
 
-			return RedirectToAction("Index");
+			return RedirectToAction("LaptopChange", "InventoryChanges", new { id = viewModel.Id });
 		}
 		[HttpPost]
 		public async Task<IActionResult> Delete(Laptop viewModel)
