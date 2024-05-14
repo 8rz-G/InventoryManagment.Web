@@ -40,12 +40,9 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var laptop = await _context.Laptops.FindAsync(Id);
+			var producer = await _context.Producers.FindAsync(Id);
 
-			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
-			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
-
-			return View(laptop);
+			return View(producer);
 		}
 		[HttpPost]
 		public async Task<IActionResult> Edit(Producer viewModel)

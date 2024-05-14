@@ -46,7 +46,8 @@ namespace InventoryManagment.Web.Controllers
 				Producer = viewModel.Producer,
 				HardwareModel = viewModel.HardwareModel,
 				InStock = viewModel.InStock,
-				SerialNumber = viewModel.SerialNumber
+				SerialNumber = viewModel.SerialNumber,
+				DateOfPurchase = viewModel.DateOfPurchase
 			};
 
 			await _context.AddAsync(monitor);
@@ -69,7 +70,7 @@ namespace InventoryManagment.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Edit(Display viewModel)
 		{
-			// searching for Displays in database to update values
+			// searching for display in database
 			var monitor = await _context.Monitors.FindAsync(viewModel.Id);
 
 			// updating database values
@@ -81,6 +82,7 @@ namespace InventoryManagment.Web.Controllers
 				monitor.HardwareModel = viewModel.HardwareModel;
 				monitor.InStock = viewModel.InStock;
 				monitor.SerialNumber = viewModel.SerialNumber;
+				monitor.DateOfPurchase = viewModel.DateOfPurchase;
 			}
 
 			await _context.SaveChangesAsync();
@@ -90,11 +92,11 @@ namespace InventoryManagment.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Delete(Display viewModel)
 		{
-			// finding monitor to remove
+			// finding display to remove
 			var monitor = await _context.Monitors.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 
-			// removing monitor from database
+			// removing display from database
 			if (monitor is not null)
 			{
 				_context.Monitors.Remove(monitor);

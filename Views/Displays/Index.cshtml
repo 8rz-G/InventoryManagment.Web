@@ -10,6 +10,8 @@
 	<th>Model</th>
 	<th>InStock</th>
 	<th>SerialNumber</th>
+	<th>Date of purchase</th>
+	<th></th>
 	</thead>
 	<tbody>
 		@foreach (var monitor in Model)
@@ -29,5 +31,8 @@
 		}
 	</tbody>
 </table>
+<div class="mt-3">
 <a class="btn btn-dark" asp-controller="Displays" asp-action="Add">Add new monitor</a>
-<a class="btn btn-dark" asp-controller="Displays" asp-action="Export">Export</a>
+<a class="btn btn-dark" asp-controller="Producers" asp-action="Index">Producers</a>
+<a class="btn btn-dark" asp-controller="HardwareModels" asp-action="Index">Models</a>
+</div>
