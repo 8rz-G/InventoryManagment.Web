@@ -17,9 +17,11 @@ namespace InventoryManagment.Web.Controllers
 		{
 			this._context = context;
 		}
-		public async Task<IActionResult> Index() 
+		public async Task<IActionResult> Index(int Id, string TypeOfHw) 
 		{ 
-			var inventoryChanges = await _context.InventoryChanges.ToListAsync();
+			var inventoryChanges = await _context.InventoryChanges
+				.Where(x => x.HardwareId == Id && x.TypeOfHardware == TypeOfHw)
+				.ToListAsync();
 
 			return View(inventoryChanges);
 		}
