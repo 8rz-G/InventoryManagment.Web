@@ -32,6 +32,7 @@ namespace InventoryManagment.Web.Controllers
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 			ViewBag.hardwareModels = new SelectList(_context.HardwareModels
 				.Where(x => x.Category == "Monitor").Select(x => new { x.Id, x.Name })
+				.Select(x => new { x.Id, x.Name })
 				.ToList(), "Id", "Name");
 
 			return View();
@@ -40,7 +41,8 @@ namespace InventoryManagment.Web.Controllers
 		public async Task<IActionResult> Add(AddDisplayViewModel viewModel)
 		{
 			// adding user provided data to object for database insertion
-			var monitor = new Display
+
+			var display = new Display
 			{
 				AssignedTo = viewModel.AssignedTo,
 				Producer = viewModel.Producer,
@@ -50,56 +52,56 @@ namespace InventoryManagment.Web.Controllers
 				DateOfPurchase = viewModel.DateOfPurchase
 			};
 
-			await _context.AddAsync(monitor);
+			await _context.AddAsync(display);
 			await _context.SaveChangesAsync();
 
-			return RedirectToAction("Index");
+			return RedirectToAction("DisplayChange", "InventoryChanges", display.Id);
 		}
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var monitor = await _context.Monitors.FindAsync(Id);
+			var display = await _context.Monitors.FindAsync(Id);
 
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 			ViewBag.hardwareModels = new SelectList(_context.HardwareModels
 				.Where(x => x.Category == "Monitor").Select(x => new { x.Id, x.Name }).ToList(), "Id", "Name");
 
-			return View(monitor);
+			return View(display);
 		}
 		[HttpPost]
 		public async Task<IActionResult> Edit(Display viewModel)
 		{
 			// searching for display in database
-			var monitor = await _context.Monitors.FindAsync(viewModel.Id);
+			var display = await _context.Monitors.FindAsync(viewModel.Id);
 
 			// updating database values
-			if (monitor is not null)
+			if (display is not null)
 			{
-				monitor.Id = viewModel.Id;
-				monitor.AssignedTo = viewModel.AssignedTo;
-				monitor.Producer = viewModel.Producer;
-				monitor.HardwareModel = viewModel.HardwareModel;
-				monitor.InStock = viewModel.InStock;
-				monitor.SerialNumber = viewModel.SerialNumber;
-				monitor.DateOfPurchase = viewModel.DateOfPurchase;
+				display.Id = viewModel.Id;
+				display.AssignedTo = viewModel.AssignedTo;
+				display.Producer = viewModel.Producer;
+				display.HardwareModel = viewModel.HardwareModel;
+				display.InStock = viewModel.InStock;
+				display.SerialNumber = viewModel.SerialNumber;
+				display.DateOfPurchase = viewModel.DateOfPurchase;
 			}
 
 			await _context.SaveChangesAsync();
 
-			return RedirectToAction("Index");
+			return RedirectToAction("DisplayChange", "InventoryChanges", new { id = viewModel.Id });
 		}
 		[HttpPost]
 		public async Task<IActionResult> Delete(Display viewModel)
 		{
 			// finding display to remove
-			var monitor = await _context.Monitors.AsNoTracking()
+			var display = await _context.Monitors.AsNoTracking()
 				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 
 			// removing display from database
-			if (monitor is not null)
+			if (display is not null)
 			{
-				_context.Monitors.Remove(monitor);
+				_context.Monitors.Remove(display);
 				await _context.SaveChangesAsync();
 			}
 

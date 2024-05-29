@@ -1,4 +1,4 @@
-﻿@model List<InventoryManagment.Web.Models.Entities.Laptop>
+﻿@model List<InventoryManagment.Web.Models.Entities.InventoryChange>
 
 <h3>Laptops</h3>
 
@@ -10,7 +10,7 @@
 	<th>Model</th>
 	<th>InStock</th>
 	<th>Serial Number</th>
-	<th>Date Of Purchase</th>
+	<th>Date Of Change</th>
 	<th></th>
 	</thead>
 	<tbody>
@@ -23,7 +23,7 @@
 				<td>@laptop.HardwareModel</td>
 				<td>@laptop.InStock</td>
 				<td>@laptop.SerialNumber</td>
-				<td>@laptop.DateOfPurchase</td>
+				<td>@laptop.DateOfChange.ToShortDateString()</td>
 				<td>
 					<a class="btn btn-dark" asp-controller="Laptops" asp-action="Edit" asp-route-id="@laptop.Id">Edit</a>
 				</td>

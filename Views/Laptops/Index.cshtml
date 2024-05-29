@@ -26,7 +26,7 @@
 				<td>@laptop.DateOfPurchase</td>
 				<td>
 					<a class="btn btn-dark" asp-controller="Laptops" asp-action="Edit" asp-route-id="@laptop.Id">Edit</a>
-					<a class="btn btn-dark" asp-controller="InventoryChanges" asp-action="Index" asp-route-id1="@laptop.Id">Check History</a>
+					<a class="btn btn-dark" asp-controller="InventoryChanges" asp-action="LaptopHistory" asp-route-id="@laptop.Id">Check History</a>
 				</td>
 			</tr>
 		}

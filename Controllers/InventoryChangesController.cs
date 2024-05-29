@@ -17,10 +17,18 @@ namespace InventoryManagment.Web.Controllers
 		{
 			this._context = context;
 		}
-		public async Task<IActionResult> Index(int Id, string TypeOfHw) 
+		public async Task<IActionResult> LaptopHistory(int Id) 
 		{ 
 			var inventoryChanges = await _context.InventoryChanges
-				.Where(x => x.HardwareId == Id && x.TypeOfHardware == TypeOfHw)
+				.Where(x => x.HardwareId == Id && x.TypeOfHardware == "Laptop")
+				.ToListAsync();
+
+			return View(inventoryChanges);
+		}
+		public async Task<IActionResult> DisplayHistory(int Id) 
+		{ 
+			var inventoryChanges = await _context.InventoryChanges
+				.Where(x => x.HardwareId == Id && x.TypeOfHardware == "Monitor")
 				.ToListAsync();
 
 			return View(inventoryChanges);
@@ -28,7 +36,7 @@ namespace InventoryManagment.Web.Controllers
 		public async Task<IActionResult> DisplayChange(int Id)
 		{
 			var display = await _context.Monitors.FindAsync(Id);
-			return RedirectToAction("AddMonitorChange", display);
+			return RedirectToAction("AddDisplayChange", display);
 		}
 		public async Task<IActionResult> AddDisplayChange(Display change)
 		{

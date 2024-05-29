@@ -28,6 +28,7 @@ namespace InventoryManagment.Web.Controllers
 		public IActionResult Add()
 		{
 			// creating ViewBag for user selection dropdown
+
 			ViewBag.Users = new SelectList(_context.Users.ToList(), "Id", "Name");
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 			ViewBag.hardwareModels = new SelectList(_context.HardwareModels

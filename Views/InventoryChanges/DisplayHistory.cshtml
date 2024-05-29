@@ -1,5 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model List<InventoryManagment.Web.Models.Entities.InventoryChange>
+
+<h3>Laptops</h3>
+
+<table class="table">
+	<thead>
+	<th>Id</th>
+	<th>Assigned To</th>
+	<th>Producer</th>
+	<th>Model</th>
+	<th>InStock</th>
+	<th>Serial Number</th>
+	<th>Date Of Change</th>
+	<th></th>
+	</thead>
+	<tbody>
+		@foreach (var display in Model)
+		{
+			<tr>
+				<td>@display.Id</td>
+				<td>@display.AssignedTo</td>
+				<td>@display.Producer</td>
+				<td>@display.HardwareModel</td>
+				<td>@display.InStock</td>
+				<td>@display.SerialNumber</td>
+				<td>@display.DateOfChange.ToShortDateString()</td>
+				<td>
+					<a class="btn btn-dark" asp-controller="Laptops" asp-action="Edit" asp-route-id="@display.Id">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
