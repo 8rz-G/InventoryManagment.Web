@@ -1,6 +1,7 @@
 using InventoryManagment.Web.Data;
 using InventoryManagment.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace InventoryManagment.Web.Controllers
@@ -19,6 +20,10 @@ namespace InventoryManagment.Web.Controllers
 		public IActionResult Index()
 		{
 			var changes = _context.InventoryChanges.ToList();
+			
+			ViewBag.Users = _context.Users.ToList();
+			ViewBag.Producers = _context.Producers.ToList();
+
 			return View(changes);
 		}
 

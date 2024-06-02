@@ -1,5 +1,8 @@
 ﻿@model List<InventoryManagment.Web.Models.Entities.Laptop>
-
+@using InventoryManagment.Web.Models.Entities;
+@{
+	var users = ViewBag.Users as List<User>;
+}
 <h3>Laptops</h3>
 
 <table class="table">
@@ -16,9 +19,11 @@
 	<tbody>
 		@foreach (var laptop in Model)
 		{
+			var assignedUser = users?.FirstOrDefault(u => u.Id == laptop.AssignedTo);
+
 			<tr>
 				<td>@laptop.Id</td>
-				<td>@laptop.AssignedTo</td>
+				<td>@(assignedUser != null ? assignedUser.Name : "Unknown")</td>
 				<td>@laptop.Producer</td>
 				<td>@laptop.HardwareModel</td>
 				<td>@laptop.InStock</td>

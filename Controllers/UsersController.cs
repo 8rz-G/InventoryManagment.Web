@@ -3,6 +3,7 @@ using InventoryManagment.Web.Models;
 using InventoryManagment.Web.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagment.Web.Controllers
@@ -72,15 +73,21 @@ namespace InventoryManagment.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Delete(User viewModel)
 		{
-			var user = await _context.Users.AsNoTracking()
-				.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
-
-			if (user is not null)
+			try
 			{
-				_context.Users.Remove(user);
-				await _context.SaveChangesAsync();
-			}
+				var user = await _context.Users.AsNoTracking()
+					.FirstOrDefaultAsync(x => x.Id == viewModel.Id);
 
+				if (user is not null)
+				{
+					_context.Users.Remove(user);
+					await _context.SaveChangesAsync();
+				}
+			}
+			catch (Exception exception)
+			{
+				return View("DeleteUserError");
+			}
 			return RedirectToAction("Index");
 		}
 

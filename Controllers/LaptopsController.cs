@@ -18,7 +18,9 @@ namespace InventoryManagment.Web.Controllers
 		}
 		[HttpGet]
 		public async Task<IActionResult> Index()
-		{
+		{ 
+			ViewBag.Users = await _context.Users.ToListAsync();
+
 			// returning list of laptops from database to Index view
 			var laptops = await _context.Laptops.ToListAsync();
 

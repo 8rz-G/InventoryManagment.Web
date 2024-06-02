@@ -18,8 +18,10 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Index()
 		{
-			// returning list of Displays from database to Index view
-			var Displays = await _context.Monitors.ToListAsync();
+            ViewBag.Users = await _context.Users.ToListAsync();
+
+            // returning list of Displays from database to Index view
+            var Displays = await _context.Monitors.ToListAsync();
 
 			return View(Displays);
 		}

@@ -23,6 +23,9 @@ namespace InventoryManagment.Web.Controllers
 				.Where(x => x.HardwareId == Id && x.TypeOfHardware == "Laptop")
 				.ToListAsync();
 
+			ViewBag.Users = await _context.Users.ToListAsync();
+			ViewBag.Producers = await _context.Producers.ToListAsync();
+
 			return View(inventoryChanges);
 		}
 		public async Task<IActionResult> DisplayHistory(int Id) 
@@ -30,6 +33,9 @@ namespace InventoryManagment.Web.Controllers
 			var inventoryChanges = await _context.InventoryChanges
 				.Where(x => x.HardwareId == Id && x.TypeOfHardware == "Monitor")
 				.ToListAsync();
+
+			ViewBag.Users = await _context.Users.ToListAsync();
+			ViewBag.Producers = await _context.Producers.ToListAsync();
 
 			return View(inventoryChanges);
 		}

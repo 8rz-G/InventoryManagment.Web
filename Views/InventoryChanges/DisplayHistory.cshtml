@@ -1,4 +1,9 @@
 ﻿@model List<InventoryManagment.Web.Models.Entities.InventoryChange>
+@using InventoryManagment.Web.Models.Entities;
+@{
+	var users = ViewBag.Users as List<User>;
+	var producers = ViewBag.Producers as List<Producer>;
+}
 
 <h3>Laptops</h3>
 
@@ -16,11 +21,13 @@
 	<tbody>
 		@foreach (var display in Model)
 		{
+			var assignedUser = users?.FirstOrDefault(u => u.Id == display.AssignedTo);
+			var producer = producers?.FirstOrDefault(u => u.Id == display.Producer);
 			<tr>
 				<td>@display.Id</td>
-				<td>@display.AssignedTo</td>
-				<td>@display.Producer</td>
-				<td>@display.HardwareModel</td>
+				<td>@(assignedUser != null ? assignedUser.Name : "Unknown")</td>
+				<td>@(producer != null ? producer.Name : "Unknow")</td>
+				<td>@display.HardwareModelName</td>
 				<td>@display.InStock</td>
 				<td>@display.SerialNumber</td>
 				<td>@display.DateOfChange.ToShortDateString()</td>
