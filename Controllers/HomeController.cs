@@ -2,6 +2,7 @@ using InventoryManagment.Web.Data;
 using InventoryManagment.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Web.Helpers;
 using System.Diagnostics;
 
 namespace InventoryManagment.Web.Controllers

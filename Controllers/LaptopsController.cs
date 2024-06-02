@@ -110,45 +110,45 @@ namespace InventoryManagment.Web.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public async Task<IActionResult> Export()
-		{
-			ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+		//public async Task<IActionResult> Export()
+		//{
+		//	ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-			var laptops = await _context.Laptops.ToListAsync();
+		//	var laptops = await _context.Laptops.ToListAsync();
 
-			byte[] bytes;
-			using (var laptop = new ExcelPackage())
-			{
-				var sheet = laptop.Workbook.Worksheets.Add("Laptops");
-				int i = 2;
+		//	byte[] bytes;
+		//	using (var laptop = new ExcelPackage())
+		//	{
+		//		var sheet = laptop.Workbook.Worksheets.Add("Laptops");
+		//		int i = 2;
 
-				// creating headers for collumns
-				sheet.Cells[1, 1].Value = "Id";
-				sheet.Cells[1, 2].Value = "AssignedTo";
-				sheet.Cells[1, 3].Value = "Producer";
-				sheet.Cells[1, 4].Value = "Model";
-				sheet.Cells[1, 5].Value = "InStock";
-				sheet.Cells[1, 6].Value = "SerialNumber";
-				sheet.Cells[1, 7].Value = "DateOfPurchase";
+		//		// creating headers for collumns
+		//		sheet.Cells[1, 1].Value = "Id";
+		//		sheet.Cells[1, 2].Value = "AssignedTo";
+		//		sheet.Cells[1, 3].Value = "Producer";
+		//		sheet.Cells[1, 4].Value = "Model";
+		//		sheet.Cells[1, 5].Value = "InStock";
+		//		sheet.Cells[1, 6].Value = "SerialNumber";
+		//		sheet.Cells[1, 7].Value = "DateOfPurchase";
 
-				// data insert to cells
-				foreach (var item in laptops)
-				{
-					sheet.Cells[i, 1].Value = item.Id;
-					sheet.Cells[i, 2].Value = item.AssignedTo;
-					sheet.Cells[i, 3].Value = item.Producer;
-					sheet.Cells[i, 4].Value = item.HardwareModel;
-					sheet.Cells[i, 5].Value = item.InStock;
-					sheet.Cells[i, 6].Value = item.SerialNumber;
-					i++;
-				}
-				bytes = await laptop.GetAsByteArrayAsync();
-			}
-			// file download
-			var file = new FileContentResult(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-			file.FileDownloadName = "Laptops" + DateOnly.FromDateTime(DateTime.Now).ToString() + ".xlsx";
-			return file;
-		}
+		//		// data insert to cells
+		//		foreach (var item in laptops)
+		//		{
+		//			sheet.Cells[i, 1].Value = item.Id;
+		//			sheet.Cells[i, 2].Value = item.AssignedTo;
+		//			sheet.Cells[i, 3].Value = item.Producer;
+		//			sheet.Cells[i, 4].Value = item.HardwareModel;
+		//			sheet.Cells[i, 5].Value = item.InStock;
+		//			sheet.Cells[i, 6].Value = item.SerialNumber;
+		//			i++;
+		//		}
+		//		bytes = await laptop.GetAsByteArrayAsync();
+		//	}
+		//	// file download
+		//	var file = new FileContentResult(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		//	file.FileDownloadName = "Laptops" + DateOnly.FromDateTime(DateTime.Now).ToString() + ".xlsx";
+		//	return file;
+		//}
 
 	}
 }
