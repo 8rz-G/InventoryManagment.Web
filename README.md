@@ -1,5 +1,5 @@
 # Inventory Management Web Application
-This is an ASP.NET Core MVC application that helps manage inventory items such as departments, displays, hardware models, laptops, producers, and users. 
+This is an ASP.NET Core MVC application that helps manage inventory and users. 
 
 ### Features
 - Department Management: Add, edit, delete, and view departments.
