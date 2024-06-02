@@ -1,8 +1,39 @@
-﻿@{
+﻿@model List<InventoryManagment.Web.Models.Entities.InventoryChange>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Inventory Managment App</h1>
+    <h3>Here you can manage users and hardware in your company</h3>
+</div>
+<div>
+	<p>Latest inventory changes:</p>
+	<table class="table">
+		<thead>
+		<th>Id</th>
+		<th>InStock</th>
+		<th>Serial Number</th>
+		<th>Model</th>
+		<th>Assigned To</th>
+		<th>Producer</th>
+		<th>Type Of Hardware</th>
+		<th>Date of Change</th>
+		</thead>
+		<tbody>
+			@foreach (var inventoryChange in Model)
+			{
+				<tr>
+					<td>@inventoryChange.Id</td>
+					<td>@inventoryChange.InStock</td>
+					<td>@inventoryChange.SerialNumber</td>
+					<td>@inventoryChange.HardwareModelName</td>
+					<td>@inventoryChange.AssignedTo</td>
+					<td>@inventoryChange.Producer</td>
+					<td>@inventoryChange.TypeOfHardware</td>
+					<td>@inventoryChange.DateOfChange.ToShortDateString()</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>
