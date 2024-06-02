@@ -1,4 +1,8 @@
 ﻿@model List<InventoryManagment.Web.Models.Entities.User>
+@{
+	ViewData["Title"] = "Users";
+	int i = 1;
+}
 
 <h3>Users</h3>
 
@@ -14,7 +18,7 @@
 		@foreach (var user in Model)
 		{
 			<tr>
-				<td>@user.Id</td>
+				<td>@i</td>
 				<td>@user.Name</td>
 				<td>@user.Email</td>
 				<td>@user.DateOfEmployment</td>
@@ -22,6 +26,7 @@
 					<a class="btn btn-dark" asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
 				</td>
 			</tr>
+			i++;
 		}
 	</tbody>
 </table>

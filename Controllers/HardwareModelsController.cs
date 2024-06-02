@@ -44,7 +44,7 @@ namespace InventoryManagment.Web.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Edit(int Id)
 		{
-			var hardwareModel = await _context.Laptops.FindAsync(Id);
+			var hardwareModel = await _context.HardwareModels.FindAsync(Id);
 
 			ViewBag.Producers = new SelectList(_context.Producers.ToList(), "Id", "Name");
 

@@ -1,9 +1,10 @@
 ﻿@model List<InventoryManagment.Web.Models.Entities.InventoryChange>
 @using InventoryManagment.Web.Models.Entities;
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 	var users = ViewBag.Users as List<User>;
 	var producers = ViewBag.Producers as List<Producer>;
+	int i = 1;
 }
 
 <div class="text-center">
@@ -28,7 +29,7 @@
 				var assignedUser = users?.FirstOrDefault(u => u.Id == inventoryChange.AssignedTo);
 				var producer = producers?.FirstOrDefault(u => u.Id == inventoryChange.Producer);
 				<tr>
-					<td>@inventoryChange.Id</td>
+					<td>@i</td>
 					<td>@inventoryChange.InStock</td>
 					<td>@inventoryChange.HardwareModelName</td>
 					<td>@(assignedUser != null ? assignedUser.Name : "Unknown")</td>
@@ -36,6 +37,7 @@
 					<td>@inventoryChange.TypeOfHardware</td>
 					<td>@inventoryChange.DateOfChange.ToShortDateString()</td>
 				</tr>
+				i++;
 			}
 		</tbody>
 	</table>

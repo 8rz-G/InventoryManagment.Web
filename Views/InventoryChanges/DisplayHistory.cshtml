@@ -1,8 +1,10 @@
 ﻿@model List<InventoryManagment.Web.Models.Entities.InventoryChange>
 @using InventoryManagment.Web.Models.Entities;
 @{
+	ViewData["Title"] = "Display Changes";
 	var users = ViewBag.Users as List<User>;
 	var producers = ViewBag.Producers as List<Producer>;
+	int i = 1;
 }
 
 <h3>Laptops</h3>
@@ -24,7 +26,7 @@
 			var assignedUser = users?.FirstOrDefault(u => u.Id == display.AssignedTo);
 			var producer = producers?.FirstOrDefault(u => u.Id == display.Producer);
 			<tr>
-				<td>@display.Id</td>
+				<td>@i</td>
 				<td>@(assignedUser != null ? assignedUser.Name : "Unknown")</td>
 				<td>@(producer != null ? producer.Name : "Unknow")</td>
 				<td>@display.HardwareModelName</td>
@@ -35,6 +37,7 @@
 					<a class="btn btn-dark" asp-controller="Laptops" asp-action="Edit" asp-route-id="@display.Id">Edit</a>
 				</td>
 			</tr>
+			i++;
 		}
 	</tbody>
 </table>
