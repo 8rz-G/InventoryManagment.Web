@@ -4,7 +4,6 @@ using InventoryManagment.Web.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using OfficeOpenXml;
 using System.Linq;
 
 
