@@ -43,4 +43,11 @@ ASP.NET Core MVC application for managing inventory and users.
 - **Track Laptop Changes**: Monitor and record any changes in the inventory for laptops.
 - **Track Display Changes**: Monitor and record any changes in the inventory for displays.
 
-### Pictures of website
+## Pictures of website
+![Main_page](https://github.com/user-attachments/assets/5adb53a3-3c60-465a-a503-c88ee4570a69)
+![Users](https://github.com/user-attachments/assets/e6c730fd-eaad-4304-954b-8c97cb0c1422)
+![Laptops](https://github.com/user-attachments/assets/c8273767-09a2-4d9a-bc0f-8b305145755f)
+![Displays](https://github.com/user-attachments/assets/f6172ce3-610d-48d9-96f1-5806e6399840)
+![Adding_new_laptop](https://github.com/user-attachments/assets/c80e24bc-e1c7-42e6-9076-6bfcad09d509)
+![Editing_laptop](https://github.com/user-attachments/assets/85216a81-1823-485f-ab91-314161850bb4)
+
